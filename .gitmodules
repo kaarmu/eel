@@ -1,0 +1,3 @@
+[submodule "doc/Eel/tex-class"]
+	path = doc/Eel/tex-class
+	url = https://github.com/kaarmu/tex-class

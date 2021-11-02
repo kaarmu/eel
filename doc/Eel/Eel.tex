@@ -1,0 +1,78 @@
+\documentclass{texclass}
+
+\title{Eel}
+\subtitle{the Exposed compiler Language}
+\author{Kaj Munhoz Arfvidsson}
+
+% -- Packages --
+
+% -- -- --
+
+\usepackage{xspace}
+
+\newcommand{\Eel}{\textbf{\textit{Eel}}\xspace}
+
+\begin{document}
+
+    \maketitle
+
+    \section{Introduction}
+
+        \subsection{\Eel in three steps...}
+        \Eel executes in three steps. First off, the \href{sec:step_0}{Lexer} reads the source code and builds a stream of tokens. The token stream are then
+        passed to and parsed by the \href{sec:step_1}{Compiler Language}. Lastly, \href{sec:step_2}{Compiled Language}.
+
+    \break
+    \section{Elementary Lexer}\label{sec:step_0}
+
+        \subsection{Token types}
+        \begin{itemize}
+            \item \textsc{newline}
+            \item \textsc{indent}
+            \item \textsc{symbol}
+            \item \textsc{identifier}
+            \item \textsc{number}
+            \item \textsc{string}
+        \end{itemize}
+
+    \break
+    \section{Compiler Language}\label{sec:step_1}
+
+        \subsection{Features}
+        The compiler language is meant to open up compilation of the \href{sec:step_2}{Compiled Language} by exposing, for example, namespaces, operator bindings, etc.
+
+        \subsection{\textit{new} keyword}
+        The \textit{new} keyword creates an identifier that can be added to any namespace. It expects a pair of \verb|IDENTIFIER : TYPE_EXPR|
+
+        \verb|namespace += new var: type|
+
+        \subsection{Constructs}
+        \begin{itemize}
+            \item \textit{curly} container... \verb|{ s }| where \verb|s| is a sequence
+            \item \textit{brack} container... \verb|[ s ]| where \verb|s| is a sequence
+            \item \textit{paren} container... \verb|( s )| where \verb|s| is a sequence
+            \item \textit{row} sequence... \verb|a; b; c|
+            \item \textit{col} sequence... \verb|a, b, c|
+            \item \textit{pair}... \verb|a: b|
+        \end{itemize}
+
+        \subsection{Classes}
+        Create a class by calling
+
+        \begin{verbatim}
+#class (InheritedClasses) {
+    #operator <symbol> : ... = ...
+    #operator {} : __.RowSequence -> retval = {}
+}
+        \end{verbatim}
+
+    \break
+    \section{Compiled Language}\label{sec:step_2}
+    Finally we have the tools to construct the complete compiled language.
+
+        \subsection{No objects inherent to the language}
+        In many languages some objects can be constructed by the syntax alone. For instance, in Python a list can be constructed by \verb|[1, 2, 3]| and dictionaries by \verb|{'a': 2, 'b': 5}|. In contrast \Eel doesn't include features like that. Instead, special to \Eel, class declarations (which are \href{sec:step_1}{Compiler Level}) can specify operators for \textit{each} container.
+
+        \subsection{}
+
+\end{document}
